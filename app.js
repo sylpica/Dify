@@ -121,7 +121,7 @@ const LESSONS=[
 <tr><td>Agentの種類が見当たらない</td><td>作成画面で基本タイプ（More basic app types 等）の表示を開いたか。画面仕様は更新されるため、公式ドキュメントもあわせて確認</td></tr></table>
 <h2>切り分けのコツ</h2>
 <ol><li>プレビューで再現するかを確認する（公開版だけの問題か切り分ける）</li><li>1つ手前のノードの出力を見る（どこからおかしいか特定する）</li><li>変数・検索結果・モデル設定の順に、入力側から確認する</li></ol>
-<p>ここまで終わったら、上の「クイズ」タブで12問の確認クイズに挑戦してください。</p>`}
+<p>ここまで終わったら、上の「クイズ」タブで30問の確認クイズに挑戦してください。言葉の意味があいまいなときは「用語集」タブも使ってください。</p>`}
 ];
 const QUIZ=[
 {q:"Difyの説明として正しいものはどれですか？",c:["画像編集だけを行うツール","AIアプリを画面操作で作り、WebやAPIで公開できるオープンソースのプラットフォーム","表計算ソフトの拡張機能","メールを送るだけのサービス"],a:1,e:"DifyはオープンソースのAIアプリ開発プラットフォームで、Studioで作ったアプリをWebアプリやAPIとして公開できます。"},
@@ -135,7 +135,63 @@ const QUIZ=[
 {q:"インデックス方法で、意味による検索ができる推奨設定はどれですか？",c:["Economical","High Quality","Trigger","Secret"],a:1,e:"High Qualityは埋め込みモデルを使って意味による検索ができ、公式入門でも推奨されています。Economicalはキーワード中心です。"},
 {q:"Workflowで編集した内容が公開版に反映されないとき、まず疑うべきことはどれですか？",c:["モデルを変更していないこと","編集後に Publish Update をしていないこと","クイズに答えていないこと","ブラウザを変えていないこと"],a:1,e:"編集中はCurrent Draft（下書き）で、公開版はLatest Versionです。Publish → Publish Updateで下書きを公開版にする必要があります。"},
 {q:"DifyのService APIでAPIキーについて正しいものはどれですか？",c:["全アプリ共通の1つのキーを使う","キーはアプリごとに作り、そのアプリ専用である","キーはブラウザのコードに書くのが推奨される","キーは不要である"],a:1,e:"アプリ用APIキーはアプリごとに作成し、そのアプリ専用です。Knowledge用キーとは別物です。"},
-{q:"APIリクエストの認証ヘッダーとして正しい形はどれですか？",c:["API-Key: {キー} を本文に入れる","Authorization: Bearer {APIキー}","Cookieにキーを書く","URLの末尾にキーをそのまま公開する"],a:1,e:"認証は Authorization: Bearer {APIキー} のヘッダーで送ります。キーはサーバー側で保管してください。"}
+{q:"APIリクエストの認証ヘッダーとして正しい形はどれですか？",c:["API-Key: {キー} を本文に入れる","Authorization: Bearer {APIキー}","Cookieにキーを書く","URLの末尾にキーをそのまま公開する"],a:1,e:"認証は Authorization: Bearer {APIキー} のヘッダーで送ります。キーはサーバー側で保管してください。"},
+{q:"Dify DSLとは何ですか？",c:["画像を圧縮する形式","アプリの構成（ノード・プロンプト・変数・設定）を表すYAML形式","料金プランの名前","モデルの学習データ"],a:1,e:"DSLはアプリの作りや設定を表すYAML形式です。ログやナレッジベースのデータ自体は含みません。書き出すとアプリの共有や移行に使えます。"},
+{q:"ノード（Node）の説明として正しいものはどれですか？",c:["利用者のアカウントのこと","キャンバス上の1つ1つの手順・部品で、つなぐことで処理の流れを作る","APIキーの別名","文書のチャンクのこと"],a:1,e:"ノードはワークフローの部品です。LLMやナレッジ検索などのノードをつないで、AIにたどらせたい流れを作ります。"},
+{q:"Difyの「ツール（Tools）」でできることはどれですか？",c:["モデルの料金を下げる","Web検索など、アプリが外部の世界とやり取りできるようにする","文書を自動で削除する","画面の色を変える"],a:1,e:"ツール（プラグイン）を使うと、Web検索や天気の確認など、外部とのやり取りをアプリに組み込めます。"},
+{q:"テンプレートから始める方法として案内されている場所はどれですか？",c:["Settings","Explore","Logs","Knowledge"],a:1,e:"Exploreには、マーケティングやデータ分析などの用途別テンプレートが用意されています。Detailsで作りを確認してから使うこともできます。"},
+{q:"Workflowの開始ノードの種類はどれですか？",c:["AnswerとEndだけ","User Input（利用者やAPIが実行）とTrigger（スケジュールや外部イベントで自動実行）","LLMとKnowledge Retrievalだけ","変数代入だけ"],a:1,e:"WorkflowはUser InputかTriggerから始まります。Chatflowは常にUser Inputから始まる点が違いです。"},
+{q:"システム変数 sys.conversation_id の役割はどれですか？",c:["モデル料金を数える","1つの会話セッションを識別し、関連するメッセージを同じ会話としてまとめる","ファイルを保存する","APIキーを生成する"],a:1,e:"sys.conversation_idは会話セッションの一意なIDです。同じ会話のメッセージをグループ化するために使われます。"},
+{q:"システム変数 sys.dialogue_count について正しいものはどれですか？",c:["手で書き換える値","会話の往復ごとに自動で1ずつ増える数で、条件分岐と組み合わせて使える","ファイルの個数","エラーの回数"],a:1,e:"sys.dialogue_countはChatflowの会話ターン数で、ターンごとに自動で増えます。IF/ELSEノードと組み合わせた分岐などに使えます。"},
+{q:"環境変数で秘密情報（APIキーなど）を入れるとき使うべき型はどれですか？",c:["String型","Number型","Secret型","File型"],a:2,e:"Secret型にすると、アプリを書き出すときに値が含まれないようにできます（自分で含める選択をした場合を除く）。"},
+{q:"プロンプトの中へ変数を挿入する方法として公式に案内されているものはどれですか？",c:["変数名を大文字で書く","テキスト欄で / を打って候補から選ぶ","再読み込みする","モデルを変更する"],a:1,e:"設定欄のドロップダウンで選ぶ方法のほか、テキスト入力では / を打って変数を選んで挿入できます。"},
+{q:"ナレッジへ資料を取り込む方法に含まれないものはどれですか？",c:["ファイルから取り込む","Notionから同期する","Webサイトから同期（クロール）する","電話で読み上げる"],a:3,e:"公式入門で案内される取り込みは、ファイル／Notion同期／Webサイト同期です。"},
+{q:"High Qualityインデックスに必要なものはどれですか？",c:["Triggerノード","埋め込みモデル（テキストを意味で探せる形に変換するモデル）","MCPサーバー","独自ドメイン"],a:1,e:"High Qualityは埋め込みモデルでテキストをベクトル化し、意味による検索を可能にします。公式入門でも推奨設定です。"},
+{q:"ナレッジを作った後、アプリで使う前にすべき確認はどれですか？",c:["検索テストで、質問に合うチャンクが返るか確認する","料金プランを上げる","アプリ名を変更する","APIキーを削除する"],a:0,e:"Retrieval Testing（検索テスト）で意図した部分が返るかを確認してから、アプリにつなぐのが確実です。"},
+{q:"Knowledge Retrievalノードの役割はどれですか？",c:["画面を翻訳する","質問に合う内容をナレッジから検索して取り出す","モデルを学習する","決済を行う"],a:1,e:"Knowledge Retrievalノードがナレッジを検索し、その結果をLLMノードへ文脈として渡すことで、資料に基づく回答ができます。"},
+{q:"公開したアプリへアクセスする方法に含まれないものはどれですか？",c:["Webアプリ（URL）","API","MCPサーバー","紙に印刷したQRコードが必須"],a:3,e:"公開アプリへはWeb、API、MCPサーバー経由でアクセスできます（公式Key Concepts）。QRコードは必須ではありません。"},
+{q:"APIでアプリ情報を確認する「Get App Info」の試し方として公式案内にあるものはどれですか？",c:["コードを書かないと試せない","Try itからAuthorization欄にキーを貼ってSendすれば、全アプリ種類で試せる","セルフホスト専用である","Knowledgeキー専用である"],a:1,e:"公式のAPI入門では、Get App InfoのTry itにキーを貼って送るのが最速の初回確認とされています。"},
+{q:"チャット系APIで会話を続けるために必要な考え方はどれですか？",c:["毎回アプリを作り直す","初回に発行される conversation_id を次の呼び出しにも含めて同じ会話として続ける","キーを毎回変える","userを空にする"],a:1,e:"会話型アプリでは、セッションごとにconversation_idが発行され、それを後続の呼び出しに含めることで会話がつながります。"},
+{q:"Knowledge（ナレッジ）用のAPIキーについて正しい注意点はどれですか？",c:["アプリ用キーと同じものを使い回す","届く範囲が広めなので、アプリ用キー以上に取り扱いに注意する","公開しても問題ない","パスワードの代わりになる"],a:1,e:"Knowledge用キーはアプリ用キーとは別物で、到達できる範囲が広めです。作成したアカウントで見えるナレッジに届くため、慎重に扱います。"},
+{q:"モデルプロバイダーを設定する画面の流れとして公式ブログ案内にあるものはどれですか？",c:["Knowledge → 新規作成","アバター → 設定 → モデルプロバイダーでLLMをインストールする","Studio → Publish","API Access → キー作成"],a:1,e:"公式ブログでは「アバターをクリック → settings → model provider → LLMのアイコンからinstall」という流れが案内されています。"}
+];const GLOSSARY=[
+{t:"Dify",en:"Dify",d:"オープンソースのAIアプリ開発プラットフォーム。名前の由来は Do It For You。Studioでアプリを作り、WebアプリやAPIとして公開できます。",r:"レッスン1"},
+{t:"Studio",en:"Studio",d:"Difyでアプリを作る作業画面。ここでアプリの作成、ノードの組み立て、アプリ一覧の管理を行います。",r:"レッスン3"},
+{t:"Dify Cloud",en:"Dify Cloud",d:"Difyが提供する管理されたクラウド版。インストール不要で、無料のSandboxプランから始められます。",r:"レッスン1"},
+{t:"セルフホスト",en:"Self-Host",d:"オープンソース版を自分のサーバー等で動かす方法。Docker Composeでのデプロイが案内されています。",r:"レッスン1"},
+{t:"モデル非依存",en:"Model-agnostic",d:"特定のモデルに縛られず、複数のモデルプロバイダーからLLMを選べるというDifyの性質です。",r:"レッスン1"},
+{t:"モデルプロバイダー",en:"Model Provider",d:"アプリが使うLLMを提供する事業者や、その接続設定のこと。設定画面のモデルプロバイダーからインストール／設定します。",r:"レッスン3"},
+{t:"LLM",en:"Large Language Model",d:"大規模言語モデル。文章の生成や要約、質問への回答などを行うAIモデルそのものです。",r:"レッスン3"},
+{t:"ノード",en:"Node",d:"ワークフローやチャットフローを構成する1つ1つの手順・部品。キャンバス上でつなぐことで処理の流れを作ります。",r:"レッスン3"},
+{t:"Workflow（ワークフロー）",en:"Workflow",d:"1回で完結する処理のためのアプリ形式。要約・翻訳・バッチ処理などに向きます。開始はUser InputかTriggerです。",r:"レッスン2"},
+{t:"Chatflow（チャットフロー）",en:"Chatflow",d:"会話のターン（往復）ごとに動くワークフロー形式。会話変数やLLMノードのメモリなど、会話向けの機能を持ちます。",r:"レッスン2"},
+{t:"Chatbot（チャットボット）",en:"Chatbot",d:"基本タイプの1つ。シンプルな対話型の質問応答を手早く作りたいときに向きます。",r:"レッスン2"},
+{t:"Agent（エージェント）",en:"Agent",d:"基本タイプの1つ。AI自身が考えて手順を選び、検索などのツールを使って自律的にタスクを解きます。",r:"レッスン2"},
+{t:"Text Generator（テキスト生成）",en:"Text Generator",d:"基本タイプの1つ。レポートや要約など、構造のある文章の生成に向きます。",r:"レッスン2"},
+{t:"User Input",en:"User Input",d:"アプリの開始ノードの1つ。利用者の入力やAPI呼び出しで実行が始まります。ここで入力変数を定義します。",r:"レッスン2・4"},
+{t:"Trigger（トリガー）",en:"Trigger",d:"Workflowの開始方法の1つ。スケジュールや外部イベントをきっかけに自動で実行が始まります。",r:"レッスン2"},
+{t:"プロンプト",en:"Prompt",d:"AIへの指示文。何を、どんな形式で、どんな立場で答えるかをLLMノードなどで指定します。",r:"レッスン4"},
+{t:"変数",en:"Variable",d:"情報を入れておき、名前で参照して後から使うための入れ物。ノード間でデータを受け渡すために使います。",r:"レッスン4"},
+{t:"入力変数",en:"Inputs",d:"User Inputノードで定義し、利用者が実行時に埋める値。実行開始時に決まり、途中で更新されません。",r:"レッスン4"},
+{t:"環境変数",en:"Environment Variables",d:"アプリ全体で共有する値。秘密情報にはSecret型を使い、書き出し時に値が含まれないようにできます。",r:"レッスン4"},
+{t:"会話変数",en:"Conversation Variables",d:"Chatflow専用の変数。1つの会話のターンをまたいで値を保持し、Variable Assignerノードで更新できます。",r:"レッスン4"},
+{t:"システム変数",en:"System Variables",d:"sys.user_id や sys.conversation_id など、sys. で始まるDifyが用意する値。アプリの種類で用意されるものが違います。",r:"レッスン4"},
+{t:"DSL",en:"Dify DSL",d:"アプリの構成（ノード・プロンプト・変数・設定）を表すYAML形式。アプリの書き出し・読み込みによる共有や移行に使います。ログやナレッジのデータは含みません。",r:"補足"},
+{t:"Knowledge（ナレッジ）",en:"Knowledge",d:"アプリが参照する資料の置き場。ファイルの取り込み、Notion同期、Webサイト同期で作ります。RAGの土台です。",r:"レッスン5"},
+{t:"RAG",en:"Retrieval-Augmented Generation",d:"検索で補強した生成。質問に合う資料を検索し、その内容をLLMに渡して答えさせる仕組みです。",r:"レッスン5"},
+{t:"チャンク",en:"Chunk",d:"文書を検索しやすく分けた小さな塊。保存前にPreview Chunkで分け方を確認できます。",r:"レッスン5"},
+{t:"インデックス方法",en:"Index Method",d:"チャンクを検索用に保存する方法。High Qualityは埋め込みモデルによる意味検索が可能で推奨。Economicalはキーワードの一致が中心です。",r:"レッスン5"},
+{t:"埋め込みモデル",en:"Embedding Model",d:"テキストを意味で探せる数値（ベクトル）に変換するモデル。High Qualityインデックスに必要です。",r:"レッスン5"},
+{t:"検索設定",en:"Retrieval Setting",d:"質問とチャンクの合わせ方の設定。最初は既定でよく、検索テストで結果を確認しながら調整します。",r:"レッスン5"},
+{t:"Knowledge Retrievalノード",en:"Knowledge Retrieval Node",d:"質問に合う内容をナレッジから検索して取り出すノード。その結果をLLMへ渡して回答させます。",r:"レッスン5"},
+{t:"ツール",en:"Tools",d:"アプリが外部とやり取りするためのプラグイン。Web検索や天気の確認などを組み込めます。",r:"補足"},
+{t:"テンプレート／Explore",en:"Templates / Explore",d:"用途別の既成テンプレートを探せる場所。空白から作る代わりに、テンプレートから始めることもできます。",r:"レッスン3"},
+{t:"Publish／Publish Update",en:"Publish / Publish Update",d:"下書き（Current Draft）を公開版（Latest Version）にする操作。編集内容を反映するには、この操作が必要です。",r:"レッスン6"},
+{t:"Current Draft／Latest Version",en:"Current Draft / Latest Version",d:"Current Draftは編集中の下書きで利用者には見えません。Latest Versionが利用者向けの公開版です。",r:"レッスン6"},
+{t:"Webアプリ",en:"Web App",d:"公開したアプリを使うためのブラウザ向け画面。発行されるURLから開きます。",r:"レッスン6"},
+{t:"APIキー（アプリ用）",en:"App API Key",d:"アプリごとに作成するキーで、そのアプリ専用です。Authorization: Bearer ヘッダーで送ります。サーバー側で保管してください。",r:"レッスン7"},
+{t:"Service API",en:"Service API",d:"公開したアプリやナレッジを、自分のプログラムから呼び出すためのREST APIの総称です。",r:"レッスン7"},
+{t:"MCPサーバー",en:"MCP Server",d:"公開したアプリへMCP経由でアクセスする提供方法の1つです。",r:"レッスン6"}
 ];
 const $=s=>document.querySelector(s);
 function loadDone(){try{const v=JSON.parse(localStorage.getItem("dify-learn-v1")||"[]");if(!Array.isArray(v))return new Set();return new Set(v.filter(id=>LESSONS.some(l=>l.id===id)))}catch(e){return new Set()}}
@@ -149,9 +205,13 @@ $("#doneCheck").onchange=e=>{const l=LESSONS[idx];e.target.checked?done.add(l.id
 $("#prevBtn").onclick=()=>{if(idx>0){idx--;renderLesson()}};
 $("#nextBtn").onclick=()=>{if(idx<LESSONS.length-1){idx++;renderLesson()}else{showQuiz()}};
 $("#resetBtn").onclick=()=>{if(confirm("学習進捗をリセットしますか？")){done.clear();save();renderLesson()}};
-function showQuiz(){$("#lessonView").hidden=true;$("#quizView").hidden=false;$("#btnLesson").classList.remove("active");$("#btnQuiz").classList.add("active");$("#btnLesson").setAttribute("aria-pressed","false");$("#btnQuiz").setAttribute("aria-pressed","true");renderQuiz()}
-function showLesson(){$("#quizView").hidden=true;$("#lessonView").hidden=false;$("#btnQuiz").classList.remove("active");$("#btnLesson").classList.add("active");$("#btnQuiz").setAttribute("aria-pressed","false");$("#btnLesson").setAttribute("aria-pressed","true")}
-$("#btnQuiz").onclick=showQuiz;$("#btnLesson").onclick=showLesson;$("#backLesson").onclick=showLesson;
-function renderQuiz(){const sc=$("#quizBody").scrollTop;$("#quizBody").innerHTML=QUIZ.map((it,i)=>`<div class="q"><p>Q${i+1}. ${it.q}</p><div class="choices">${it.c.map((c,j)=>{let cls="";if(answers[i]!==null){if(j===it.a)cls="correct";else if(j===answers[i])cls="wrong"}return `<button type="button" data-q="${i}" data-c="${j}" class="${cls}" ${answers[i]!==null?"disabled":""}>${["ア","イ","ウ","エ"][j]}. ${c}</button>`}).join("")}</div><div class="explain ${answers[i]!==null?"show":""}">${answers[i]===it.a?"正解です。":"残念、不正解です。"} ${it.e}</div></div>`).join("");document.querySelectorAll(".choices button").forEach(b=>b.onclick=()=>{const qi=+b.dataset.q;if(answers[qi]!==null)return;answers[qi]=+b.dataset.c;renderQuiz()});const answered=answers.filter(v=>v!==null).length,correct=answers.filter((v,i)=>v===QUIZ[i].a).length;$("#quizScore").textContent=answered?`回答 ${answered} / ${QUIZ.length} ・ 正解 ${correct}問`:"未回答";$("#quizBody").scrollTop=sc}
+function setView(name){const views={lesson:$("#lessonView"),quiz:$("#quizView"),gloss:$("#glossView")};const tabs={lesson:$("#btnLesson"),quiz:$("#btnQuiz"),gloss:$("#btnGloss")};for(const k in views){views[k].hidden=k!==name;tabs[k].classList.toggle("active",k===name);tabs[k].setAttribute("aria-pressed",k===name?"true":"false")}}
+function showQuiz(){setView("quiz");renderQuiz()}
+function showLesson(){setView("lesson")}
+function showGloss(){setView("gloss");renderGloss()}
+$("#btnQuiz").onclick=showQuiz;$("#btnLesson").onclick=showLesson;$("#btnGloss").onclick=showGloss;$("#backLesson").onclick=showLesson;$("#backLesson2").onclick=showLesson;
+function renderGloss(){const q=($("#glossSearch").value||"").trim().toLowerCase();const hit=GLOSSARY.filter(g=>!q||g.t.toLowerCase().includes(q)||g.en.toLowerCase().includes(q)||g.d.toLowerCase().includes(q));$("#glossCount").textContent=q?`${hit.length}件ヒット（全${GLOSSARY.length}語）`:`全${GLOSSARY.length}語`;$("#glossBody").innerHTML=hit.length?hit.map(g=>`<div class="term"><h3>${g.t}<span class="en">${g.en}</span></h3><p>${g.d}</p><span class="rel">${g.r}</span></div>`).join(""):`<p class="no-hit">「${$("#glossSearch").value}」に合う用語がありませんでした。別の言葉で試してください。</p>`}
+$("#glossSearch").addEventListener("input",renderGloss);
+function renderQuiz(){const sc=$("#quizBody").scrollTop;$("#quizBody").innerHTML=QUIZ.map((it,i)=>`<div class="q"><p>Q${i+1}. ${it.q}</p><div class="choices">${it.c.map((_,j)=>{const oj=(j+i)%it.c.length;const c=it.c[oj];let cls="";if(answers[i]!==null){if(oj===it.a)cls="correct";else if(oj===answers[i])cls="wrong"}return `<button type="button" data-q="${i}" data-c="${oj}" class="${cls}" ${answers[i]!==null?"disabled":""}>${["ア","イ","ウ","エ"][j]}. ${c}</button>`}).join("")}</div><div class="explain ${answers[i]!==null?"show":""}">${answers[i]===it.a?"正解です。":"残念、不正解です。"} ${it.e}</div></div>`).join("");document.querySelectorAll(".choices button").forEach(b=>b.onclick=()=>{const qi=+b.dataset.q;if(answers[qi]!==null)return;answers[qi]=+b.dataset.c;renderQuiz()});const answered=answers.filter(v=>v!==null).length,correct=answers.filter((v,i)=>v===QUIZ[i].a).length;$("#quizScore").textContent=answered?`回答 ${answered} / ${QUIZ.length} ・ 正解 ${correct}問`:"未回答";$("#quizBody").scrollTop=sc}
 $("#quizRetry").onclick=()=>{answers=new Array(QUIZ.length).fill(null);renderQuiz();$("#quizBody").scrollTop=0};
 renderLesson();

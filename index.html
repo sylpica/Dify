@@ -12,7 +12,8 @@
   <div class="brand"><span class="logo">D</span><span>Dify入門</span><span class="sub">簡易学習アプリ</span></div>
   <nav class="topnav" aria-label="表示切替">
     <button id="btnLesson" class="tab active" type="button" aria-pressed="true">レッスン</button>
-    <button id="btnQuiz" class="tab" type="button" aria-pressed="false">クイズ <span id="quizBadge" class="badge">12問</span></button>
+    <button id="btnQuiz" class="tab" type="button" aria-pressed="false">クイズ <span id="quizBadge" class="badge">30問</span></button>
+    <button id="btnGloss" class="tab" type="button" aria-pressed="false">用語集</button>
   </nav>
   <div class="progress" aria-label="学習進捗"><span id="progText">0 / 8 完了</span><span class="bar"><span id="progBar"></span></span></div>
 </header>
@@ -41,7 +42,7 @@
 <main id="quizView" class="layout single" hidden>
   <section class="panel">
     <div class="panel-head">
-      <p class="meta">確認クイズ ・ 4択 ・ 全12問</p>
+      <p class="meta">確認クイズ ・ 4択 ・ 全30問</p>
       <h1>理解度チェック</h1>
       <p class="lead">レッスンの内容から出題します。選ぶとすぐに解説が出ます。1問につき回答は1回だけです。やり直すときは下の「最初からやり直す」を使ってください。</p>
     </div>
@@ -50,6 +51,22 @@
       <span id="quizScore" class="score">未回答</span>
       <button id="quizRetry" class="btn" type="button">最初からやり直す</button>
       <button id="backLesson" class="btn primary" type="button">レッスンに戻る</button>
+    </div>
+  </section>
+</main>
+
+<main id="glossView" class="layout single" hidden>
+  <section class="panel">
+    <div class="panel-head">
+      <p class="meta">用語集 ・ <span id="glossCount"></span></p>
+      <h1>Dify用語集</h1>
+      <p class="lead">レッスンに出てくる大事な用語をまとめました。検索すると、その場で絞り込まれます。</p>
+      <p class="gloss-search"><input type="search" id="glossSearch" placeholder="用語を検索（例：変数、RAG、API）" aria-label="用語を検索"></p>
+    </div>
+    <div id="glossBody" class="body"></div>
+    <div class="panel-foot">
+      <span class="score">出典：Dify公式ドキュメント／公式ブログ</span>
+      <button id="backLesson2" class="btn primary" type="button">レッスンに戻る</button>
     </div>
   </section>
 </main>
